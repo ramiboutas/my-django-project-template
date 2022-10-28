@@ -1,12 +1,12 @@
 # This file shows how my .env file should look like
 # It is provided with small explanations or useful links
 
-DJANGO_SECRET_KEY=https://django-secret-key-generator.netlify.app/
+SECRET_KEY=https://django-secret-key-generator.netlify.app/
 DEBUG=1
 PRODUCTION=0
 
 # Database configuration / connections
-USE_SQLITE3_DB=1
+USE_POSTGRES=1
 POSTGRES_DB=my_db
 POSTGRES_USER=my_db_user
 POSTGRES_PASSWORD=my_db_password

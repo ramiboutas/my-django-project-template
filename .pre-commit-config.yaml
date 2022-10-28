@@ -48,3 +48,13 @@ repos:
     - id: djhtml
     args:
     - --tabwidth=2
+-   repo: local
+    hooks:
+    -   id: fix-django-links
+        name: Fix Django links
+        language: script
+        entry: scripts/fix_django_links.py
+        types_or:
+        - markdown
+        - python
+        - rst
