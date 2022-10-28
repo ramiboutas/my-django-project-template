@@ -1,5 +1,5 @@
 # my-django-project-template
- This a base template I want to use for my Django projects
+This a base template I want to use for my Django projects
 
 
 ## Features
@@ -36,7 +36,17 @@ And on __Windows__ by using:
 
 ### Collecting packages inside the venv
 
-``python -m pip install pip-tools``
+``python -m pip install --upgrade setuptools wheel pip-tools ``
+
+I don´t why at the moment (28.10.2022), but Rust & cargo is needed for the following steps. Install them under the link:
+
+[https://rustup.rs/](https://rustup.rs/)
+
+I guess this is just for the development environment. I hope it´s not required in production (it´s not because I don´t like Rust, but I just to keep my project template simple).
+
+
+
+
 
 
 
