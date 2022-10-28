@@ -1,0 +1,65 @@
+# This file shows how my .env file should look like
+# It is provided with small explanations or useful links
+
+DJANGO_SECRET_KEY=https://django-secret-key-generator.netlify.app/
+DEBUG=1
+PRODUCTION=0
+
+# Database configuration / connections
+USE_SQLITE3_DB=1
+POSTGRES_DB=my_db
+POSTGRES_USER=my_db_user
+POSTGRES_PASSWORD=my_db_password
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+
+# Social media keys 
+
+# Telegram bot API KEY
+TELEGRAM_BOT_API_KEY=bot-api-key
+
+# Linkedin
+LINKEDIN_CLIENT_ID=client-id
+LINKEDIN_CLIENT_SECRET=client-secret
+
+LINKEDIN_PROFILE_ID=profile-id
+LINKEDIN_ACCESS_TOKEN=access-token
+
+LINKEDIN_ORGANIZATION_ID=organization-id
+LINKEDIN_ORGANIZATION_ACCESS_TOKEN=organization-access-token
+LINKEDIN_ORGANIZATION_REFRESH_TOKEN=organization-refresh-key
+
+# Twitter
+TWITTER_API_KEY=api-key
+TWITTER_API_KEY_SECRET=api-key-secret
+
+TWITTER_BEARER_TOKEN=bearer-token
+TWITTER_ACCESS_TOKEN=access-token
+TWITTER_ACCESS_TOKEN_SECRET=access-token-secret
+
+TWITTER_CLIENT_ID=client-id
+TWITTER_CLIENT_SECRET=client-secret
+
+# Facebook
+FACEBOOK_PAGE_ID=my-page-id
+FACEBOOK_PAGE_ACCESS_TOKEN=my-page-access-token
+FACEBOOK_APP_ID=my-app-id
+FACEBOOK_APP_SECRET_KEY=my-app-secret-key
+
+
+# Translation with DeepL
+DEEPL_AUTH_KEY=https://www.deepl.com/account/summary
+
+# Email smtp backend
+EMAIL_HOST=host
+EMAIL_HOST_USER=host-user
+EMAIL_HOST_PASSWORD=host-pass
+EMAIL_PORT=port
+
+
+# Digital Ocean Spaces
+# set USE_SPACES to 1 if I want to store static & media file on Digital Ocean Spaces Service
+USE_SPACES=0
+AWS_ACCESS_KEY_ID=access-key-id
+AWS_SECRET_ACCESS_KEY=secret-access-key
+AWS_STORAGE_BUCKET_NAME=bucket-name
