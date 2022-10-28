@@ -14,14 +14,16 @@ This a base template I want to use for my Django projects
 
 
 
-## Set up 
+## Set up
 
 ### Create and activate the virtual environment (venv)
 
 Creating the venv on __Unix systems__:
+
 ``python3 -m venv venv``
 
 And on __Windows__:
+
 ``python -m venv venv``
 
 
@@ -30,8 +32,14 @@ Activating it on __Unix systems__:
 
 
 And on __Windows__ by using:
-* PowerShell: ``venv\\Scripts\\activate.bat``
-* or CMD: ``venv\\Scripts\\activate.ps1``
+
+* PowerShell:
+
+``venv\\Scripts\\activate.bat``
+
+* or CMD:
+
+``venv\\Scripts\\activate.ps1``
 
 
 ### Collecting packages inside the venv
@@ -43,10 +51,3 @@ I don´t why at the moment (28.10.2022), but Rust & cargo is needed for the foll
 [https://rustup.rs/](https://rustup.rs/)
 
 I guess this is just for the development environment. I hope it´s not required in production (it´s not because I don´t like Rust, but I just to keep my project template simple).
-
-
-
-
-
-
-

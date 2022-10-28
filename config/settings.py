@@ -1,19 +1,21 @@
-from pathlib import Path
-import dotenv
-import sys
-import os
+from __future__ import annotations
 
+import os
+import sys
+from pathlib import Path
+
+import dotenv
 
 # Setup
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Production 
-PRODUCTION = str(os.environ.get('PRODUCTION')) == '1'
+# Production
+PRODUCTION = str(os.environ.get("PRODUCTION")) == "1"
 
 # Use Postgres (otherwise Sqlite)
-USE_POSTGRES = str(os.environ.get('USE_POSTGRES')) == '1'
+USE_POSTGRES = str(os.environ.get("USE_POSTGRES")) == "1"
 
 # Load env vars from .env file if not testing
 try:
@@ -31,7 +33,7 @@ if command != "test":
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = str(os.environ.get('DEBUG')) == '1'
+DEBUG = str(os.environ.get("DEBUG")) == "1"
 
 ALLOWED_HOSTS = []
 
@@ -39,9 +41,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # My apps
-
     # Third-party apps
-
     # Django contrib apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -83,27 +83,27 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/stable/ref/settings/#databases
 
 if USE_POSTGRES:
-    POSTGRES_DB = os.environ.get('POSTGRES_DB')
-    POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
-    POSTGRES_USER = os.environ.get('POSTGRES_USER')
-    POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
-    POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
-    POSTGRES_TESTS_DB = os.environ.get('POSTGRES_TESTS_DB')
+    POSTGRES_DB = os.environ.get("POSTGRES_DB")
+    POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+    POSTGRES_USER = os.environ.get("POSTGRES_USER")
+    POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
+    POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
+    POSTGRES_TESTS_DB = os.environ.get("POSTGRES_TESTS_DB")
 
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': POSTGRES_DB,
-            'USER': POSTGRES_USER,
-            'PASSWORD': POSTGRES_PASSWORD,
-            'HOST': POSTGRES_HOST,
-            'PORT': POSTGRES_PORT,
-            'TEST': {
-             'NAME': 'test_db',
-             },
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT,
+            "TEST": {
+                "NAME": "test_db",
+            },
         }
     }
 else:
@@ -116,7 +116,7 @@ else:
 
 
 # Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/stable/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -135,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
+# https://docs.djangoproject.com/en/stable/topics/i18n/
 
 LANGUAGE_CODE = "en-UK"
 
@@ -146,7 +146,7 @@ USE_I18N = True
 USE_TZ = True
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/stable/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -207,7 +207,7 @@ else:
 
 if PRODUCTION:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SECURE_HSTS_SECONDS = 31_536_000 #31536000 # usual: 31536000 (1 year)
+    SECURE_HSTS_SECONDS = 31_536_000  # 31536000 # usual: 31536000 (1 year)
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True

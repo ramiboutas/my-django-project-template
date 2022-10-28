@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import annotations
+
 import argparse
 import re
 
@@ -9,9 +11,7 @@ def main(argv=None):
         description="Fix files to use ´stable´ Django docs links"
     )
     parser.add_argument(
-        "file",
-        nargs="+",
-        type=argparse.FileType("r+", encoding="utf-8")
+        "file", nargs="+", type=argparse.FileType("r+", encoding="utf-8")
     )
     args = parser.parse_args(argv)
 
@@ -21,7 +21,7 @@ def main(argv=None):
         if fix_file(file):
             exit_code = 1
         file.close()
-    
+
     return exit_code
 
 

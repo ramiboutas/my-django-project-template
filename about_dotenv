@@ -13,7 +13,7 @@ POSTGRES_PASSWORD=my_db_password
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 
-# Social media keys 
+# Social media keys
 
 # Telegram bot API KEY
 TELEGRAM_BOT_API_KEY=bot-api-key

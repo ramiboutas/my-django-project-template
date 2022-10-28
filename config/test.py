@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django.test.runner import DiscoverRunner
 from django.test.utils import override_settings
 
@@ -9,5 +11,5 @@ class TestRunner(DiscoverRunner):
 
 
 TEST_SETTINGS = {
-    "PAGE_SIZE": 10,  # Remove if not necessary 
+    "PAGE_SIZE": 10,  # Remove if not necessary
 }
