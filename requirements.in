@@ -8,8 +8,7 @@ django-taggit
 django-cors-headers
 django-minify-html
 django-slugger
-django-storages
-boto3
+
 python-dotenv
 tweepy
 python-telegram-bot

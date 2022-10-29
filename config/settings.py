@@ -155,48 +155,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 TEST_RUNNER = "config.test.TestRunner"
 
 
-# Project Settings
-
-# Storage
-USE_SPACES = os.environ.get("USE_SPACES") == "1"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_dev"),
 ]
 
-if USE_SPACES:
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
-    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
-    AWS_S3_ENDPOINT_URL = "https://fra1.digitaloceanspaces.com"
-    AWS_S3_CUSTOM_DOMAIN = "spaces.ramiboutas.com"
-    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400", "ACL": "public-read"}
-    # AWS_LOCATION = f"https://{AWS_STORAGE_BUCKET_NAME}.fra1.digitaloceanspaces.com"
+# Project Settings
 
-    AWS_DEFAULT_ACL = "public-read"
-    AWS_S3_SIGNATURE_VERSION = "s3v4"
-
-    DEFAULT_FILE_STORAGE = "config.storage_backends.MediaRootStorage"
-    STATICFILES_STORAGE = "config.storage_backends.StaticRootStorage"
-
-    AWS_STATIC_LOCATION = os.environ.get("AWS_STATIC_LOCATION")
-    # STATIC_URL = f"https://{AWS_S3_ENDPOINT_URL}/{AWS_STATIC_LOCATION}/"
-    STATIC_URL = "https://{}/{}/".format(AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
-    STATIC_ROOT = f"{AWS_STATIC_LOCATION}/"
-
-    AWS_MEDIA_LOCATION = "englishstuff-media"
-    AWS_MEDIA_DEFAULT_ACL = "public-read"
-    # MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.fra1.digitaloceanspaces.com/{AWS_MEDIA_LOCATION}/" # it worked
-    # MEDIA_URL = f"https://{AWS_S3_ENDPOINT_URL}/{AWS_MEDIA_LOCATION}/"
-    MEDIA_URL = "{}/{}/".format(AWS_S3_CUSTOM_DOMAIN, AWS_MEDIA_LOCATION)
-    MEDIA_ROOT = f"{AWS_MEDIA_LOCATION}/"
-
-else:
-    STATIC_URL = "/static/"
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    MEDIA_URL = "/media/"
-    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # https://stackoverflow.com/questions/35760943/how-can-i-enable-cors-on-django-rest-framework
@@ -216,9 +186,10 @@ if PRODUCTION:
     PREPEND_WWW = True
 
     # caching
+    REDIS_CACHING_LOCATION = os.environ.get("REDIS_CACHING_LOCATION")
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": "redis://127.0.0.1:6379",
+            "LOCATION": REDIS_CACHING_LOCATION,
         }
     }

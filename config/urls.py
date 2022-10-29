@@ -18,21 +18,9 @@ from __future__ import annotations
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-
-# from django.contrib.sitemaps import GenericSitemap
-# from django.contrib.sitemaps.views import sitemap
-# from django.urls import include
 from django.urls import path
 from django.views.generic.base import TemplateView
 
-
-class Quiz:
-    pass
-
-
-info_dict = {
-    "queryset": Quiz.objects.all(),
-}
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -40,7 +28,6 @@ urlpatterns = [
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
     ),
-    # add sitemaps
 ]
 
 if settings.DEBUG:

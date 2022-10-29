@@ -50,16 +50,6 @@ FACEBOOK_APP_SECRET_KEY=my-app-secret-key
 # Translation with DeepL
 DEEPL_AUTH_KEY=https://www.deepl.com/account/summary
 
-# Email smtp backend
-EMAIL_HOST=host
-EMAIL_HOST_USER=host-user
-EMAIL_HOST_PASSWORD=host-pass
-EMAIL_PORT=port
 
-
-# Digital Ocean Spaces
-# set USE_SPACES to 1 if I want to store static & media file on Digital Ocean Spaces Service
-USE_SPACES=0
-AWS_ACCESS_KEY_ID=access-key-id
-AWS_SECRET_ACCESS_KEY=secret-access-key
-AWS_STORAGE_BUCKET_NAME=bucket-name
+# Redis caching
+REDIS_CACHING_LOCATION=redis://127.0.0.1:6379/

@@ -2,7 +2,7 @@
 This a base template I want to use for my Django projects
 
 
-## Features
+## Features (TO ADD)
 
 - Django to do: create a release 4.1 https://www.toolsqa.com/git/github-releases/
 - pip-tools
@@ -51,3 +51,11 @@ I don´t why at the moment (28.10.2022), but Rust & cargo is needed for the foll
 [https://rustup.rs/](https://rustup.rs/)
 
 I guess this is just for the development environment. I hope it´s not required in production (it´s not because I don´t like Rust, but I just to keep my project template simple).
+
+
+
+## Snippets
+
+
+* [Storages](snippets/storages.md)
+* 

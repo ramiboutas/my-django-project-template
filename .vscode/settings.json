@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "appleboy",
+        "asgi",
         "corsheaders",
         "curlylint",
         "Deepl",
@@ -25,6 +26,7 @@
         "setuptools",
         "socialmedia",
         "socialposts",
+        "STATICFILES",
         "taggit",
         "testview",
         "thid",
