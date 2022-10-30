@@ -3,6 +3,8 @@ from __future__ import annotations
 from django.test.runner import DiscoverRunner
 from django.test.utils import override_settings
 
+from importlib import import_module
+from importlib.util import module_from_spec, spec_from_file_location
 
 class TestRunner(DiscoverRunner):
     def run_tests(self, *args, **kwargs):
@@ -13,3 +15,18 @@ class TestRunner(DiscoverRunner):
 TEST_SETTINGS = {
     "PAGE_SIZE": 10,  # Remove if not necessary
 }
+
+
+def reimport_module(name):
+    """
+    Reimport a module by name, and return a new, isolated module object.
+    Based on recipe:
+    https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
+    """
+    original = import_module(name)
+    spec = spec_from_file_location(
+        f"_remiport_module.{name}", original.__file__
+    )
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module

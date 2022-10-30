@@ -12,10 +12,10 @@ import dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Production
-PRODUCTION = str(os.environ.get("PRODUCTION")) == "1"
+PRODUCTION = os.environ.get("PRODUCTION", "") == "1"
 
 # Use Postgres (otherwise Sqlite)
-USE_POSTGRES = str(os.environ.get("USE_POSTGRES")) == "1"
+USE_POSTGRES = os.environ.get("USE_POSTGRES", "") == "1"
 
 # Load env vars from .env file if not testing
 try:
@@ -30,10 +30,10 @@ if command != "test":
 # Django Core and Contrib Settings
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = str(os.environ.get("DEBUG")) == "1"
+DEBUG = os.environ.get("DEBUG", "") == "1"
 
 ALLOWED_HOSTS = []
 
@@ -81,17 +81,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/stable/ref/settings/#databases
 
 if USE_POSTGRES:
-    POSTGRES_DB = os.environ.get("POSTGRES_DB")
-    POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
-    POSTGRES_USER = os.environ.get("POSTGRES_USER")
-    POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
-    POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
-    POSTGRES_TESTS_DB = os.environ.get("POSTGRES_TESTS_DB")
+    POSTGRES_DB = os.environ.get("POSTGRES_DB", "")
+    POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "")
+    POSTGRES_USER = os.environ.get("POSTGRES_USER", "")
+    POSTGRES_HOST = os.environ.get("POSTGRES_HOST", "")
+    POSTGRES_PORT = os.environ.get("POSTGRES_PORT", "")
+    POSTGRES_TESTS_DB = os.environ.get("POSTGRES_TESTS_DB", "")
 
     DATABASES = {
         "default": {
@@ -154,7 +153,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 TEST_RUNNER = "config.test.TestRunner"
 
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_dev"),
 ]
@@ -164,16 +162,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-
 # Project Settings
-
-
-
-# https://stackoverflow.com/questions/35760943/how-can-i-enable-cors-on-django-rest-framework
-# CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOW_CREDENTIALS = True
-# CORS_ALLOW_HEADERS = "access-control-allow-origin"
-
 
 if PRODUCTION:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -186,7 +175,7 @@ if PRODUCTION:
     PREPEND_WWW = True
 
     # caching
-    REDIS_CACHING_LOCATION = os.environ.get("REDIS_CACHING_LOCATION")
+    REDIS_CACHING_LOCATION = os.environ.get("REDIS_CACHING_LOCATION", "")
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.redis.RedisCache",

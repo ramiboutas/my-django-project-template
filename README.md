@@ -13,7 +13,6 @@ This a base template I want to use for my Django projects
 - __python-dotenv__. Why python-dotenv instead of django-dotenv? One simple reason: django-dotenv has more methods and more complete.
 
 
-
 ## Set up
 
 ### Create and activate the virtual environment (venv)
@@ -58,4 +57,4 @@ I guess this is just for the development environment. I hope it´s not required 
 
 
 * [Storages](snippets/storages.md)
-* 
+*

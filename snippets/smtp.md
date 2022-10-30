@@ -29,4 +29,3 @@ EMAIL_HOST_USER=host-user
 EMAIL_HOST_PASSWORD=host-pass
 EMAIL_PORT=port
 ```
-
