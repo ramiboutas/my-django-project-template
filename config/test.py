@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+from importlib import import_module
+from importlib.util import module_from_spec, spec_from_file_location
+
 from django.test.runner import DiscoverRunner
 from django.test.utils import override_settings
 
-from importlib import import_module
-from importlib.util import module_from_spec, spec_from_file_location
 
 class TestRunner(DiscoverRunner):
     def run_tests(self, *args, **kwargs):
@@ -24,9 +25,7 @@ def reimport_module(name):
     https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
     """
     original = import_module(name)
-    spec = spec_from_file_location(
-        f"_remiport_module.{name}", original.__file__
-    )
+    spec = spec_from_file_location(f"_remiport_module.{name}", original.__file__)
     module = module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
