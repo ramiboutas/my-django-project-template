@@ -20,12 +20,15 @@ USE_POSTGRES = os.environ.get("USE_POSTGRES", "") == "1"
 # Load env vars from .env file if not testing
 try:
     command = sys.argv[1]
-except IndexError:
+except IndexError: # pragma: no cover
     command = "help"
 
-if command != "test":
+if command != "test": # pragma: no cover
     dotenv.load_dotenv(dotenv_path=BASE_DIR / ".env")
 
+# The name of the class to use for starting the test suite.
+
+TEST_RUNNER = "config.test.TestRunner"
 
 # Django Core and Contrib Settings
 
@@ -149,9 +152,6 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# The name of the class to use for starting the test suite.
-
-TEST_RUNNER = "config.test.TestRunner"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_dev"),
