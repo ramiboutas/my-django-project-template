@@ -33,5 +33,6 @@
         "tinymce",
         "venv",
         "yake"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "off"
 }
