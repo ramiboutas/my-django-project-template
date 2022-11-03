@@ -1,12 +1,7 @@
 from __future__ import annotations
 
-import os
-from unittest import mock
-
 from django.conf import settings
 from django.test import SimpleTestCase
-
-from config.test import import_module
 
 
 class SettingsTests(SimpleTestCase):

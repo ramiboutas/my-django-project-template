@@ -1,9 +1,11 @@
-from pickle import TRUE
+from __future__ import annotations
+
 from django.conf import settings
-from django.test import SimpleTestCase, override_settings
 from django.conf.urls.static import static
+from django.test import SimpleTestCase
 
 from config.urls import urlpatterns
+
 
 class UrlsTests(SimpleTestCase):
     def test_debug_inactive(self):

@@ -29,6 +29,7 @@ repos:
         - flake8-comprehensions
         - flake8-tidy-imports
         - flake8-typing-imports
+    exclude: app_template/
 -   repo: https://github.com/asottile/pyupgrade
     rev: v3.2.0
     hooks:

@@ -20,10 +20,10 @@ USE_POSTGRES = os.environ.get("USE_POSTGRES", "") == "1"
 # Load env vars from .env file if not testing
 try:
     command = sys.argv[1]
-except IndexError: # pragma: no cover
+except IndexError:  # pragma: no cover
     command = "help"
 
-if command != "test": # pragma: no cover
+if command != "test":  # pragma: no cover
     dotenv.load_dotenv(dotenv_path=BASE_DIR / ".env")
 
 # The name of the class to use for starting the test suite.
