@@ -162,6 +162,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+# Third-party settings
+
+# celery
+broker_url = "redis://127.0.0.1:6379/5"
+result_backend = "redis://127.0.0.1:6379/5"
+
+
 # Project Settings
 
 if PRODUCTION:

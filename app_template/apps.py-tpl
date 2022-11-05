@@ -8,3 +8,4 @@ class {{ camel_case_app_name }}Config(AppConfig):
 
     def ready(self):
         from . import signals  # noqa
+        from . import tasks  # noqa
