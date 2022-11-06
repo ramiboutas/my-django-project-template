@@ -26,19 +26,19 @@ except IndexError:  # pragma: no cover
 if command != "test":  # pragma: no cover
     dotenv.load_dotenv(dotenv_path=BASE_DIR / ".env")
 
+
 # The name of the class to use for starting the test suite.
 
 TEST_RUNNER = "config.test.TestRunner"
 
 # Django Core and Contrib Settings
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = os.environ.get("SECRET_KEY", "")
-
-# SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "") == "1"
+ALLOWED_HOSTS = [
 
-ALLOWED_HOSTS = []
+]
 
 # Application definition
 
