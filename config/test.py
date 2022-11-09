@@ -20,7 +20,7 @@ TEST_SETTINGS = {
 }
 
 
-def reimport_module(name):
+def reimport_module(name):  # pragma: no cover
     """
     Reimport a module by name, and return a new, isolated module object.
     Based on recipe:

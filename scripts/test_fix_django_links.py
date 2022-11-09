@@ -3,9 +3,9 @@ from __future__ import annotations
 from scripts.fix_django_links import main
 
 
-def test_success(capsys, tmp_path):
+def test_success(capsys, tmp_path): # pragma: no cover
     example = tmp_path / "example.md"
-    example.write_text("See https://docs.djangoproject.com/en/stable/ref/utils/")
+    example.write_text("See https://docs.djangoproject.com/en/4.0/ref/utils/")
 
     exit_code = main([str(example)])
 
@@ -18,7 +18,7 @@ def test_success(capsys, tmp_path):
     )
 
 
-def test_no_change(capsys, tmp_path):
+def test_no_change(capsys, tmp_path):   # pragma: no cover
     example = tmp_path / "example.md"
     example.write_text("See https://docs.djangoproject.com/en/stable/ref/utils/")
 
@@ -33,8 +33,8 @@ def test_no_change(capsys, tmp_path):
     )
 
 
-def test_multiple_files(capsys, tmp_path):
-    before = "See https://docs.djangoproject.com/en/stable/ref/utils/"
+def test_multiple_files(capsys, tmp_path):  # pragma: no cover
+    before = "See https://docs.djangoproject.com/en/4.0/ref/utils/"
     example1 = tmp_path / "example1.md"
     example1.write_text(before)
     example2 = tmp_path / "example2.md"

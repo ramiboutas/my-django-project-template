@@ -4,18 +4,14 @@
 #
 #    pip-compile
 #
---trusted-host pypi.python.org
---trusted-host pypi.org
---trusted-host files.pythonhosted.org
---trusted-host raw.githubusercontent.com
---trusted-host github.com
-
 amqp==5.1.1
     # via kombu
 asgiref==3.5.2
     # via django
 async-timeout==4.0.2
     # via redis
+attrs==22.1.0
+    # via pytest
 autopep8==1.7.0
     # via -r requirements.in
 backports-zoneinfo==0.2.1
@@ -41,8 +37,6 @@ click-plugins==1.1.1
     # via celery
 click-repl==0.2.0
     # via celery
-colorama==0.4.6
-    # via click
 coverage==6.5.0
     # via -r requirements.in
 deprecated==1.2.13
@@ -61,18 +55,26 @@ django-crispy-forms==1.14.0
     # via -r requirements.in
 django-timezone-field==5.0
     # via django-celery-beat
+exceptiongroup==1.0.1
+    # via pytest
 flake8==5.0.4
     # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
 hiredis==2.0.0
     # via -r requirements.in
+iniconfig==1.1.1
+    # via pytest
 kombu==5.2.4
     # via celery
 mccabe==0.7.0
     # via flake8
 packaging==21.3
-    # via redis
+    # via
+    #   pytest
+    #   redis
+pluggy==1.0.0
+    # via pytest
 prompt-toolkit==3.0.31
     # via click-repl
 psycopg2-binary==2.9.5
@@ -85,6 +87,8 @@ pyflakes==2.5.0
     # via flake8
 pyparsing==3.0.9
     # via packaging
+pytest==7.2.0
+    # via -r requirements.in
 python-crontab==2.6.0
     # via django-celery-beat
 python-dateutil==2.8.2
@@ -105,10 +109,10 @@ sqlparse==0.4.3
     # via django
 toml==0.10.2
     # via autopep8
+tomli==2.0.1
+    # via pytest
 tzdata==2022.5
-    # via
-    #   django
-    #   django-celery-beat
+    # via django-celery-beat
 vine==5.0.0
     # via
     #   amqp

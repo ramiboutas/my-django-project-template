@@ -87,7 +87,8 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/stable/ref/settings/#databases
 
-if USE_POSTGRES:
+
+if USE_POSTGRES:    # # pragma: no cover
     POSTGRES_DB = os.environ.get("POSTGRES_DB", "")
     POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "")
     POSTGRES_USER = os.environ.get("POSTGRES_USER", "")
@@ -172,7 +173,7 @@ CELERY_RESULT_EXTENDED = True
 
 # Project Settings
 
-if PRODUCTION:
+if PRODUCTION:  # pragma: no cover
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_HSTS_SECONDS = 31_536_000  # 31536000 # usual: 31536000 (1 year)
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
