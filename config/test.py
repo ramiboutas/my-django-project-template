@@ -16,6 +16,7 @@ class TestRunner(DiscoverRunner):
 TEST_SETTINGS = {
     "PAGE_SIZE": 10,  # Remove if not necessary
     "DEBUG": False,
+    
 }
 
 
