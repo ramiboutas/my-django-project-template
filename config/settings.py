@@ -181,7 +181,6 @@ if PRODUCTION:  # pragma: no cover
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_PRELOAD = True
-    PREPEND_WWW = True
 
     # caching
     REDIS_CACHING_LOCATION = os.environ.get("REDIS_CACHING_LOCATION", "")
