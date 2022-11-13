@@ -11,12 +11,6 @@ import dotenv
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Production
-PRODUCTION = os.environ.get("PRODUCTION", "") == "1"
-
-# Use Postgres (otherwise Sqlite)
-USE_POSTGRES = os.environ.get("USE_POSTGRES", "") == "1"
-
 # Load env vars from .env file if not testing
 try:
     command = sys.argv[1]
@@ -28,16 +22,38 @@ if command != "test":  # pragma: no cover
 
 
 # The name of the class to use for starting the test suite.
-
 TEST_RUNNER = "config.test.TestRunner"
 
-# Django Core and Contrib Settings
+# Django secret key
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "some-tests-need-a-secret-key")
 
-
-SECRET_KEY = os.environ.get("SECRET_KEY", "")
+# Debug flag
 DEBUG = os.environ.get("DEBUG", "") == "1"
-ALLOWED_HOSTS = [
 
+# Use redis caching
+USE_REDIS_CACHING = os.environ.get("USE_REDIS_CACHING", "") == "1"
+
+# Use Postgres (otherwise SqLite)
+USE_POSTGRES = os.environ.get("USE_POSTGRES", "") == "1"
+
+# Use real email backend
+USE_EMAIL_BACKEND = os.environ.get("USE_EMAIL_BACKEND", "") == "1"
+
+# Use Digital Ocean Spaces service (Storage)
+USE_SPACES = os.environ.get("USE_SPACES", "") == "1"
+
+# https for production
+HTTPS = os.environ.get("HTTPS", "") == "1"
+
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+    "localhost",
+]
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
 ]
 
 # Application definition
@@ -173,7 +189,78 @@ CELERY_RESULT_EXTENDED = True
 
 # Project Settings
 
-if PRODUCTION:  # pragma: no cover
+
+# caching
+
+
+if USE_REDIS_CACHING:   # pragma: no cover
+    REDIS_CACHING_LOCATION = os.environ.get("REDIS_CACHING_LOCATION", "")
+    CELERY_CACHE_BACKEND = "default"
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": REDIS_CACHING_LOCATION,
+        }
+    }
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+        }
+    }
+
+
+# SMTP Email
+if USE_EMAIL_BACKEND:   # pragma: no cover
+    EMAIL_HOST = os.environ.get("EMAIL_HOST")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+    EMAIL_PORT_STR = os.environ.get("EMAIL_PORT")
+    EMAIL_PORT = int(EMAIL_PORT_STR) if EMAIL_PORT_STR is not None else 1234
+    EMAIL_USE_TLS = True
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+else:    # pragma: no cover
+    EMAIL_USE_TLS = False
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+
+if USE_SPACES:   # pragma: no cover
+    # Stuff that could be useful (comments):
+    # AWS_LOCATION = f'https://{AWS_STORAGE_BUCKET_NAME}.fra1.digitaloceanspaces.com'
+    # MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.fra1.digitaloceanspaces.com/{AWS_MEDIA_LOCATION}/' # it worked
+    # MEDIA_URL = f'https://{AWS_s3_endpoint_url}/{AWS_MEDIA_LOCATION}/'
+    # STATIC_URL = f'https://{AWS_s3_endpoint_url}/{AWS_STATIC_LOCATION}/'
+
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_ENDPOINT_URL = "https://fra1.digitaloceanspaces.com"
+    AWS_S3_CUSTOM_DOMAIN = (
+        "ramiboutas.fra1.cdn.digitaloceanspaces.com"  # spaces.ramiboutas.com
+    )
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400", "ACL": "public-read"}
+
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_SIGNATURE_VERSION = "s3v4"
+
+    DEFAULT_FILE_STORAGE = "config.storage_backends.MediaRootStorage"
+    STATICFILES_STORAGE = "config.storage_backends.StaticRootStorage"
+
+    AWS_STATIC_LOCATION = "englishstuff-static"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/"
+    STATIC_ROOT = f"{AWS_STATIC_LOCATION}/"
+
+    AWS_MEDIA_LOCATION = "englishstuff-media"
+
+    MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/"
+    MEDIA_ROOT = f"{AWS_MEDIA_LOCATION}/"
+
+
+
+if HTTPS:  # pragma: no cover
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_HSTS_SECONDS = 31_536_000  # 31536000 # usual: 31536000 (1 year)
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
@@ -181,12 +268,3 @@ if PRODUCTION:  # pragma: no cover
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_PRELOAD = True
-
-    # caching
-    REDIS_CACHING_LOCATION = os.environ.get("REDIS_CACHING_LOCATION", "")
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": REDIS_CACHING_LOCATION,
-        }
-    }
