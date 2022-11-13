@@ -6,6 +6,6 @@ class {{ camel_case_app_name }}Config(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = '{{ app_name }}'
 
-    def ready(self):
+    def ready(self):  # pragma: no cover
         from . import signals  # noqa
         from . import tasks  # noqa

@@ -60,6 +60,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     # My apps
+    "core.apps.CoreConfig",
     # Third-party apps
     # Django contrib apps
     "django.contrib.admin",
