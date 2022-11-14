@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-
 from __future__ import annotations
 
 import argparse
 import re
 
 
-def main(argv=None):    # pragma: no cover
+def main(argv=None):  # pragma: no cover
     parser = argparse.ArgumentParser(
         description="Fix files to use ´stable´ Django docs links"
     )
@@ -25,7 +24,7 @@ def main(argv=None):    # pragma: no cover
     return exit_code
 
 
-def fix_file(file):     # pragma: no cover
+def fix_file(file):  # pragma: no cover
     orig_text = file.read()
 
     new_text, num_substitutions = re.subn(

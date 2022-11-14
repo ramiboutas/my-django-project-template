@@ -1,3 +1,2 @@
-from django.shortcuts import render
-
-# Create your views here.
+class ExampleView(DetailView):
+    template_name = "core/example_detail.html"

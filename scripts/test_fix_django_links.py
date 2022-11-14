@@ -3,7 +3,7 @@ from __future__ import annotations
 from scripts.fix_django_links import main
 
 
-def test_success(capsys, tmp_path): # pragma: no cover
+def test_success(capsys, tmp_path):  # pragma: no cover
     example = tmp_path / "example.md"
     example.write_text("See https://docs.djangoproject.com/en/4.0/ref/utils/")
 
@@ -18,7 +18,7 @@ def test_success(capsys, tmp_path): # pragma: no cover
     )
 
 
-def test_no_change(capsys, tmp_path):   # pragma: no cover
+def test_no_change(capsys, tmp_path):  # pragma: no cover
     example = tmp_path / "example.md"
     example.write_text("See https://docs.djangoproject.com/en/stable/ref/utils/")
 

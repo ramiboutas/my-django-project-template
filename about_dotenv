@@ -52,4 +52,7 @@ DEEPL_AUTH_KEY=https://www.deepl.com/account/summary
 
 
 # Redis caching
-REDIS_CACHING_LOCATION=redis://127.0.0.1:6379/
+REDIS_CACHING_LOCATION=redis://127.0.0.1:6379/10
+
+# Celery broker
+CELERY_BROKER_URL=redis://127.0.0.1:6379/10
